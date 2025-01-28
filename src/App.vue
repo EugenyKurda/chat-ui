@@ -129,21 +129,26 @@ body {
 	align-items: start;
 }
 .menu li {
-	margin: 1rem 1rem;
+	margin: 0.7rem 1rem;
 	cursor: pointer;
+}
+.settings {
+	display: flex;
+	flex-direction: column;
 }
 .settings button {
 	background: none;
 	border: 1px solid #fff;
 	color: #fff;
-	margin: 0.5rem 0;
+	margin: 0.5rem 1rem;
 	cursor: pointer;
+	width: 40%;
 }
 .chat {
-	flex: 1;
 	display: flex;
 	flex-direction: column;
 	background: #f9f9f9;
+	height: 100vh;
 }
 .chat-header {
 	background: #ddd;
@@ -159,7 +164,7 @@ body {
 	flex-direction: column;
 	overflow-y: auto;
 	padding: 1rem;
-	height: 100vh;
+	flex-grow: 1; /* Занимает оставшееся пространство */
 }
 .message {
 	max-width: 50%;
