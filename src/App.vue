@@ -3,14 +3,19 @@
 		<aside class="sidebar">
 			<h2 class="sidebar-title">BELITSOFT</h2>
 			<div class="profile-info">
-				<img src="@/assets/avatar.jpeg" height="150" width="150" alt="Profile" class="profile-image" />
+				<img src="@/assets/avatar.jpeg" height="120" width="120" alt="Profile" class="profile-image" />
 				<p class="profile-name">Westin Evans</p>
 				<p class="profile-contact">+1 234 567 890</p>
 				<p class="profile-email">westinevans@email.com</p>
 			</div>
 			<nav class="menu">
 				<ul>
-					<li v-for="item in menuItems" :key="item">{{ item }}</li>
+					<li v-for="item in menuItems" :key="item">
+						<router-link :to="`${item.route}`" class="menu-item">
+							<img :src="`/src/assets/${item.iconClass}.svg`" alt="icon" class="icon">
+							<span>{{item.name}}</span>
+						</router-link>
+					</li>
 				</ul>
 			</nav>
 			<div class="settings">
@@ -57,19 +62,21 @@ const chatStore = useChatStore();
 const newMessage = ref('');
 
 const messages = computed(() => chatStore.messages);
-const progress = computed(() => chatStore.progress);
+// const progress = computed(() => chatStore.progress);
 
-const menuItems = [
-	'Personal info',
-	'Location',
-	'Education history',
-	'Employment history',
-	'Professional license',
-	'Driver’s license',
-	'Medical tests',
-	'Review',
-	'Payment',
-];
+const menuItems = computed(() => {
+	return [
+		{ name: 'Personal info', iconClass: 'person', route: 'personal-info' },
+		{ name: 'Location', iconClass: 'location', route: 'location' },
+		{ name: 'Education history', iconClass: 'school', route: 'education-history' },
+		{ name: 'Employment history', iconClass: 'calendar_today', route: 'employment-history' },
+		{ name: 'Professional license', iconClass: 'book', route: 'professional-license' },
+		{ name: 'Driver’s license', iconClass: 'shield_person', route: 'drivers-license' },
+		{ name: 'Medical tests', iconClass: 'quiz', route: 'medical-tests' },
+		{ name: 'Review', iconClass: 'reviews', route: 'review' },
+		{ name: 'Payment', iconClass: 'credit_card', route: 'payment' },
+	];
+})
 
 const toggleDarkMode = () => {
 	document.body.classList.toggle('dark-mode');
@@ -84,7 +91,7 @@ const sendMessage = () => {
 		chatStore.addMessage({
 			text: newMessage.value,
 			sentByUser: true,
-			timestamp: new Date().toLocaleTimeString(),
+			timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }),
 		});
 		newMessage.value = '';
 	}
@@ -97,7 +104,7 @@ body {
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 .chat-container {
 	display: flex;
 	height: 100vh;
@@ -131,6 +138,15 @@ body {
 .menu li {
 	margin: 0.7rem 1rem;
 	cursor: pointer;
+	width: 80%;
+}
+.menu li .menu-item {
+	display: flex;
+	align-items: center;
+
+	.icon {
+		margin-right: 10px;
+	}
 }
 .settings {
 	display: flex;
@@ -149,6 +165,7 @@ body {
 	flex-direction: column;
 	background: #f9f9f9;
 	height: 100vh;
+	width: 100%;
 }
 .chat-header {
 	background: #ddd;
