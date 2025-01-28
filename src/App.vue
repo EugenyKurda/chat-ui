@@ -164,7 +164,7 @@ body {
 	flex-direction: column;
 	overflow-y: auto;
 	padding: 1rem;
-	flex-grow: 1; /* Занимает оставшееся пространство */
+	flex-grow: 1;
 }
 .message {
 	max-width: 50%;
