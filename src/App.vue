@@ -3,7 +3,7 @@
 		<aside class="sidebar">
 			<h2 class="sidebar-title">BELITSOFT</h2>
 			<div class="profile-info">
-				<img src="https://via.placeholder.com/50" alt="Profile" class="profile-image" />
+				<img src="@/assets/avatar.jpeg" height="150" width="150" alt="Profile" class="profile-image" />
 				<p class="profile-name">Westin Evans</p>
 				<p class="profile-contact">+1 234 567 890</p>
 				<p class="profile-email">westinevans@email.com</p>
@@ -22,11 +22,19 @@
 		<main class="chat">
 			<header class="chat-header">
 				<h2>Background check request</h2>
-				<span>In progress: {{ progress }}%</span>
+<!--				<span>In progress: {{ progress }}%</span>-->
 			</header>
 
 			<section class="messages">
-				<div v-for="message in messages" :key="message.id" :class="{'message-sent': message.sentByUser, 'message-received': !message.sentByUser}">
+				<div
+						v-for="message in messages"
+						:key="message.id"
+						class="message"
+						:class="{
+							'message-sent': message.sentByUser,
+							'message-received': !message.sentByUser
+						}"
+				>
 					<p>{{ message.text }}</p>
 					<span class="timestamp">{{ message.timestamp }}</span>
 				</div>
@@ -96,8 +104,8 @@ body {
 	font-family: Arial, sans-serif;
 }
 .sidebar {
-	width: 25%;
-	background: #222;
+	width: 17%;
+	background: #00191a;
 	color: #fff;
 	padding: 1rem;
 	display: flex;
@@ -116,9 +124,12 @@ body {
 .menu ul {
 	list-style: none;
 	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
 }
 .menu li {
-	margin: 0.5rem 0;
+	margin: 1rem 1rem;
 	cursor: pointer;
 }
 .settings button {
@@ -140,28 +151,49 @@ body {
 	display: flex;
 	justify-content: space-between;
 }
+.chat-header h2 {
+	margin: 0;
+}
 .messages {
-	flex: 1;
+	display: flex;
+	flex-direction: column;
 	overflow-y: auto;
 	padding: 1rem;
+	height: 100vh;
+}
+.message {
+	max-width: 50%;
 }
 .message-sent {
 	align-self: flex-end;
-	background: #dfffd6;
+	background: #1F766E;
 	padding: 0.5rem;
 	margin: 0.5rem;
 	border-radius: 5px;
+}
+
+.message-sent p {
+	color: #FFFFFF;
 }
 .message-received {
 	align-self: flex-start;
-	background: #f0f0f0;
+	background: #ddd;
 	padding: 0.5rem;
 	margin: 0.5rem;
 	border-radius: 5px;
 }
+
+.message-received p {
+	color: #3b3e40;
+}
+
+.message-received .timestamp {
+	color: #3b3e40;
+}
+
 .timestamp {
 	font-size: 0.8rem;
-	color: #888;
+	color: #FFFFFF;
 }
 .message-input {
 	display: flex;
