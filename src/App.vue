@@ -114,6 +114,7 @@ body {
 	height: 100vh;
 	font-family: Arial, sans-serif;
 }
+
 .sidebar {
 	width: 17%;
 	background: #00191a;
@@ -122,153 +123,170 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-}
-.sidebar-title {
-	text-align: center;
-}
-.profile-info {
-	text-align: center;
-}
-.profile-image {
-	border-radius: 50%;
-}
-.menu ul {
-	list-style: none;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-}
-.menu li {
-	margin: 0.7rem 1rem;
-	cursor: pointer;
-	width: 80%;
-}
-.menu li .menu-item {
-	display: flex;
-	align-items: center;
 
-	.icon {
-		margin-right: 10px;
+	&-title {
+		text-align: center;
+	}
+
+	.profile-info {
+		text-align: center;
+	}
+
+	.profile-image {
+		border-radius: 50%;
+	}
+
+	.menu {
+		ul {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+		}
+
+		li {
+			margin: 0.7rem 1rem;
+			cursor: pointer;
+			width: 80%;
+
+			.menu-item {
+				display: flex;
+				align-items: center;
+
+				.icon {
+					margin-right: 10px;
+				}
+			}
+		}
 	}
 }
+
 .settings {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	padding: 1rem;
+
+	.toggle-button {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: none;
+		border: none;
+		color: #ddd;
+		font-size: 1rem;
+		cursor: pointer;
+		padding: 0.5rem;
+		width: 100%;
+		text-align: left;
+
+		.toggle-switch {
+			width: 35px;
+			height: 20px;
+			background: #666;
+			border-radius: 10px;
+			position: relative;
+			transition: background 0.3s ease-in-out;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 3px;
+				left: 3px;
+				width: 14px;
+				height: 14px;
+				background: #fff;
+				border-radius: 50%;
+				transition: transform 0.3s ease-in-out;
+			}
+		}
+
+		.dark-mode & .toggle-switch {
+			background: #4caf50;
+
+			&::after {
+				transform: translateX(15px);
+			}
+		}
+	}
+
+	.exit-button {
+		background: none;
+		border: none;
+		color: #ddd;
+		font-size: 1rem;
+		cursor: pointer;
+		text-align: left;
+		padding: 0.5rem;
+		width: 100%;
+	}
 }
 
-.toggle-button {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background: none;
-	border: none;
-	color: #ddd;
-	font-size: 1rem;
-	cursor: pointer;
-	padding: 0.5rem;
-	width: 100%;
-	text-align: left;
-}
-
-.toggle-switch {
-	width: 35px;
-	height: 20px;
-	background: #666;
-	border-radius: 10px;
-	position: relative;
-	transition: background 0.3s ease-in-out;
-}
-
-.toggle-switch::after {
-	content: "";
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	width: 14px;
-	height: 14px;
-	background: #fff;
-	border-radius: 50%;
-	transition: transform 0.3s ease-in-out;
-}
-
-.dark-mode .toggle-switch {
-	background: #4caf50;
-}
-
-.dark-mode .toggle-switch::after {
-	transform: translateX(15px);
-}
-
-.exit-button {
-	background: none;
-	border: none;
-	color: #ddd;
-	font-size: 1rem;
-	cursor: pointer;
-	text-align: left;
-	padding: 0.5rem;
-	width: 100%;
-}
 .chat {
 	display: flex;
 	flex-direction: column;
 	background: #f9f9f9;
 	height: 100vh;
 	width: 100%;
-}
-.chat-header {
-	background: #ddd;
-	padding: 1rem;
-	display: flex;
-	justify-content: space-between;
-}
-.chat-header h2 {
-	margin: 0;
-}
-.messages {
-	display: flex;
-	flex-direction: column;
-	overflow-y: auto;
-	padding: 1rem;
-	flex-grow: 1;
-}
-.message {
-	max-width: 50%;
-}
-.message-sent {
-	align-self: flex-end;
-	background: #1F766E;
-	padding: 0.5rem;
-	margin: 0.5rem;
-	border-radius: 5px;
+
+	&-header {
+		background: #ddd;
+		padding: 1rem;
+		display: flex;
+		justify-content: space-between;
+
+		h2 {
+			margin: 0;
+		}
+	}
+
+	.messages {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		padding: 1rem;
+		flex-grow: 1;
+	}
+
+	.message {
+		max-width: 50%;
+
+		&-sent {
+			align-self: flex-end;
+			background: #1F766E;
+			padding: 0.5rem;
+			margin: 0.5rem;
+			border-radius: 5px;
+
+			p {
+				color: #FFFFFF;
+			}
+		}
+
+		&-received {
+			align-self: flex-start;
+			background: #ddd;
+			padding: 0.5rem;
+			margin: 0.5rem;
+			border-radius: 5px;
+
+			p {
+				color: #3b3e40;
+			}
+
+			.timestamp {
+				color: #3b3e40;
+			}
+		}
+	}
+
+	.timestamp {
+		font-size: 0.8rem;
+		color: #FFFFFF;
+	}
 }
 
-.message-sent p {
-	color: #FFFFFF;
-}
-.message-received {
-	align-self: flex-start;
-	background: #ddd;
-	padding: 0.5rem;
-	margin: 0.5rem;
-	border-radius: 5px;
-}
-
-.message-received p {
-	color: #3b3e40;
-}
-
-.message-received .timestamp {
-	color: #3b3e40;
-}
-
-.timestamp {
-	font-size: 0.8rem;
-	color: #FFFFFF;
-}
 .message-input {
 	display: flex;
 	align-items: center;
@@ -276,40 +294,40 @@ body {
 	background: #f8f9fa;
 	border-top: 1px solid #ccc;
 	border-radius: 0 0 10px 10px;
-}
 
-.message-input input {
-	flex: 1;
-	padding: 0.8rem;
-	border: none;
-	border-radius: 20px;
-	background: #e9ecef;
-	outline: none;
-	font-size: 1rem;
-}
+	input {
+		flex: 1;
+		padding: 0.8rem;
+		border: none;
+		border-radius: 20px;
+		background: #e9ecef;
+		outline: none;
+		font-size: 1rem;
+	}
 
-.attach-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	margin-right: 0.5rem;
-	position: relative;
-}
+	.attach-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		margin-right: 0.5rem;
+		position: relative;
 
-.file-input {
-	position: absolute;
-	opacity: 0;
-	width: 100%;
-	height: 100%;
-	cursor: pointer;
-}
+		.file-input {
+			position: absolute;
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+		}
+	}
 
-.send-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	font-size: 1.5rem;
-	color: #007bff;
-	margin-left: 0.5rem;
+	.send-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-size: 1.5rem;
+		color: #007bff;
+		margin-left: 0.5rem;
+	}
 }
 </style>
