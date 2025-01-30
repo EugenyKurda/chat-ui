@@ -39,9 +39,5 @@ export const useChatStore = defineStore('chat', {
       });
       this.updateProgress();
     },
-
-    updateProgress() {
-      this.progress = Math.min(100, this.progress + 10);
-    },
   },
 });

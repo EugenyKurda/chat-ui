@@ -19,15 +19,16 @@
 				</ul>
 			</nav>
 			<div class="settings">
-				<button @click="toggleDarkMode">Dark Mode</button>
-				<button @click="exit">Exit</button>
+				<button @click="toggleDarkMode" class="toggle-button">
+					Dark Mode
+					<span class="toggle-switch"></span>
+				</button>
 			</div>
 		</aside>
 
 		<main class="chat">
 			<header class="chat-header">
 				<h2>Background check request</h2>
-<!--				<span>In progress: {{ progress }}%</span>-->
 			</header>
 
 			<section class="messages">
@@ -46,8 +47,12 @@
 			</section>
 
 			<footer class="message-input">
+				<button class="attach-button">
+					📎
+					<input type="file" class="file-input" />
+				</button>
 				<input v-model="newMessage" placeholder="Type your message here..." @keyup.enter="sendMessage" />
-				<button @click="sendMessage">Send</button>
+				<button @click="sendMessage" class="send-button">➤</button>
 			</footer>
 		</main>
 	</div>
@@ -62,7 +67,6 @@ const chatStore = useChatStore();
 const newMessage = ref('');
 
 const messages = computed(() => chatStore.messages);
-// const progress = computed(() => chatStore.progress);
 
 const menuItems = computed(() => {
 	return [
@@ -151,14 +155,62 @@ body {
 .settings {
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
 }
-.settings button {
+
+.toggle-button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	background: none;
-	border: 1px solid #fff;
-	color: #fff;
-	margin: 0.5rem 1rem;
+	border: none;
+	color: #ddd;
+	font-size: 1rem;
 	cursor: pointer;
-	width: 40%;
+	padding: 0.5rem;
+	width: 100%;
+	text-align: left;
+}
+
+.toggle-switch {
+	width: 35px;
+	height: 20px;
+	background: #666;
+	border-radius: 10px;
+	position: relative;
+	transition: background 0.3s ease-in-out;
+}
+
+.toggle-switch::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 14px;
+	height: 14px;
+	background: #fff;
+	border-radius: 50%;
+	transition: transform 0.3s ease-in-out;
+}
+
+.dark-mode .toggle-switch {
+	background: #4caf50;
+}
+
+.dark-mode .toggle-switch::after {
+	transform: translateX(15px);
+}
+
+.exit-button {
+	background: none;
+	border: none;
+	color: #ddd;
+	font-size: 1rem;
+	cursor: pointer;
+	text-align: left;
+	padding: 0.5rem;
+	width: 100%;
 }
 .chat {
 	display: flex;
@@ -219,16 +271,45 @@ body {
 }
 .message-input {
 	display: flex;
+	align-items: center;
 	padding: 1rem;
-	background: #ddd;
+	background: #f8f9fa;
+	border-top: 1px solid #ccc;
+	border-radius: 0 0 10px 10px;
 }
+
 .message-input input {
 	flex: 1;
-	padding: 0.5rem;
-	margin-right: 0.5rem;
+	padding: 0.8rem;
+	border: none;
+	border-radius: 20px;
+	background: #e9ecef;
+	outline: none;
+	font-size: 1rem;
 }
-.message-input button {
-	padding: 0.5rem 1rem;
+
+.attach-button {
+	background: none;
+	border: none;
 	cursor: pointer;
+	margin-right: 0.5rem;
+	position: relative;
+}
+
+.file-input {
+	position: absolute;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.send-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1.5rem;
+	color: #007bff;
+	margin-left: 0.5rem;
 }
 </style>
