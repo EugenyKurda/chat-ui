@@ -18,6 +18,7 @@ const messages = computed(() => chatStore.messages);
 <style lang="scss" scoped>
 .messages {
 	display: flex;
+	justify-content: flex-end;
 	flex-direction: column;
 	overflow-y: auto;
 	padding: 1rem;
