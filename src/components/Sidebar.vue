@@ -4,13 +4,6 @@
 			<img src="@/assets/polymer.svg" alt="polymer">
 			<h2 class="sidebar-title">BELITSOFT</h2>
 		</div>
-		<div class="profile-info">
-			<img src="@/assets/avatar.png" height="80" width="80" alt="Profile" class="profile-image" />
-			<p class="profile-name">Westin Evans</p>
-			<p class="profile-contact">+1 234 567 890</p>
-			<p class="profile-email">westinevans@email.com</p>
-			<div class="delimiter"></div>
-		</div>
 		<nav class="menu">
 			<ul>
 				<li v-for="item in menuItems" :key="item.route" :class="{
@@ -65,7 +58,7 @@ const toggleDarkMode = () => {
 <style lang="scss" scoped>
 .sidebar {
 	width: 17%;
-	background: #00191a;
+	background: #021A1A;
 	color: #fff;
 	padding: 1rem;
 	display: flex;
@@ -86,33 +79,6 @@ const toggleDarkMode = () => {
 		text-align: center;
 	}
 
-	.profile-info {
-		text-align: center;
-
-		p {
-			margin-top: 0;
-			margin-bottom: 8px;
-
-			&:first-of-type {
-				margin-top: 25px;
-			}
-
-			&:last-of-type {
-				margin-bottom: 25px;
-			}
-		}
-
-		.delimiter {
-			width: 100%;
-			height: 1px;
-			background-color: #cccccc;
-		}
-	}
-
-	.profile-image {
-		border-radius: 50%;
-	}
-
 	.menu {
 		ul {
 			list-style: none;
@@ -126,6 +92,7 @@ const toggleDarkMode = () => {
 			margin: 0.7rem 1rem;
 			cursor: pointer;
 			width: 80%;
+			color: #A2ACAC;
 
 			.menu-item {
 				display: flex;

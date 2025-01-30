@@ -2,7 +2,6 @@
 	<main class="chat">
 		<header class="chat-header">
 			<h2>Background check request</h2>
-			<h2 class="process-info">Progress 10%</h2>
 		</header>
 		<MessageList />
 		<MessageInput />
@@ -18,12 +17,12 @@ import MessageInput from "@/components/MessageInput.vue";
 .chat {
 	display: flex;
 	flex-direction: column;
-	background: #f9f9f9;
+	background: #EBEFF3;
 	height: 100vh;
 	width: 100%;
 
 	&-header {
-		background: #ddd;
+		background: #FFFFFF;
 		padding: 1rem;
 		display: flex;
 		justify-content: space-between;
@@ -31,10 +30,6 @@ import MessageInput from "@/components/MessageInput.vue";
 		h2 {
 			margin: 0;
 			font-size: 1rem;
-		}
-
-		.process-info {
-			color: #1F766E;
 		}
 	}
 }

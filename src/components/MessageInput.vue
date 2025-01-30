@@ -1,8 +1,9 @@
 <template>
 	<footer class="message-input">
-		<button class="attach-button">📎<input type="file" class="file-input" /></button>
-		<input v-model="newMessage" placeholder="Type your message..." @keyup.enter="sendMessage" />
-		<button @click="sendMessage" class="send-button">➤</button>
+		<input v-model="newMessage" placeholder="Type your message here" @keyup.enter="sendMessage" />
+		<button @click="sendMessage" class="send-button">
+			<img src="@/assets/send.svg" alt="send">
+		</button>
 	</footer>
 </template>
 
@@ -30,7 +31,7 @@ const sendMessage = () => {
 	align-items: center;
 	padding: 1rem;
 	background: #f8f9fa;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid #E8ECF0;
 	border-radius: 0 0 10px 10px;
 
 	input {
@@ -38,25 +39,13 @@ const sendMessage = () => {
 		padding: 0.8rem;
 		border: none;
 		border-radius: 20px;
-		background: #e9ecef;
+		background: #F1F5F9;
 		outline: none;
 		font-size: 1rem;
 	}
 
-	.attach-button {
-		background: none;
-		border: none;
-		cursor: pointer;
-		margin-right: 0.5rem;
-		position: relative;
-
-		.file-input {
-			position: absolute;
-			opacity: 0;
-			width: 100%;
-			height: 100%;
-			cursor: pointer;
-		}
+	input::-webkit-input-placeholder {
+		color: #BBBFC1;
 	}
 
 	.send-button {

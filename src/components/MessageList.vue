@@ -26,33 +26,48 @@ const messages = computed(() => chatStore.messages);
 }
 
 .message {
-	max-width: 50%;
+	display: flex;
+	flex-direction: column;
+	max-width: 40%;
+	padding: 17px;
+	border-radius: 15px;
+
+	p {
+		font-size: 0.9rem;
+		margin: 0;
+	}
+
+	.timestamp {
+		align-self: self-end;
+	}
 
 	&-sent {
 		align-self: flex-end;
-		background: #1F766E;
-		padding: 0.5rem;
+		background: #309399;
 		margin: 0.5rem;
-		border-radius: 5px;
+		border-bottom-right-radius: 0;
 
 		p {
-			color: #FFFFFF;
+			color: #D5E8E9;
+		}
+
+		.timestamp {
+			color: #E9F4F4;
 		}
 	}
 
 	&-received {
 		align-self: flex-start;
-		background: #ddd;
-		padding: 0.5rem;
+		background: #FFFFFF;
 		margin: 0.5rem;
-		border-radius: 5px;
+		border-bottom-left-radius: 0;
 
 		p {
-			color: #3b3e40;
+			color: #767676;
 		}
 
 		.timestamp {
-			color: #3b3e40;
+			color: #A7A7A7;
 		}
 	}
 }
