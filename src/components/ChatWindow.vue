@@ -17,7 +17,7 @@ import MessageInput from "@/components/MessageInput.vue";
 <style lang="scss" scoped>
 .chat {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	background: #f9f9f9;
 	height: 100vh;
 	width: 100%;
