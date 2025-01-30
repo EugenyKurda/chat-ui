@@ -31,6 +31,12 @@
 				</div>
 				<span class="toggle-switch"></span>
 			</button>
+			<button class="exit-button">
+				<div class="exit-button_title">
+					<img src="@/assets/logout.svg" width="24" height="24" alt="logout" class="exit-icon" />
+					Exit
+				</div>
+			</button>
 		</div>
 	</aside>
 </template>
@@ -138,7 +144,7 @@ const toggleDarkMode = () => {
 .settings {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 0.5rem;
 	padding: 1rem;
 
 	.toggle-button {
@@ -189,6 +195,29 @@ const toggleDarkMode = () => {
 
 			&::after {
 				transform: translateX(15px);
+			}
+		}
+	}
+
+	.exit-button {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: none;
+		border: none;
+		color: #ddd;
+		font-size: 1rem;
+		cursor: pointer;
+		padding: 0.5rem;
+		width: 100%;
+		text-align: left;
+
+		.exit-button_title {
+			display: flex;
+			align-items: center;
+
+			.exit-icon {
+				margin-right: 5px;
 			}
 		}
 	}
