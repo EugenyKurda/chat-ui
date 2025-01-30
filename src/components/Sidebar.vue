@@ -1,15 +1,21 @@
 <template>
 	<aside class="sidebar">
-		<h2 class="sidebar-title">BELITSOFT</h2>
+		<div class="sidebar-title_container">
+			<img src="@/assets/polymer.svg" alt="polymer">
+			<h2 class="sidebar-title">BELITSOFT</h2>
+		</div>
 		<div class="profile-info">
-			<img src="@/assets/avatar.jpeg" height="120" width="120" alt="Profile" class="profile-image" />
+			<img src="@/assets/avatar.png" height="80" width="80" alt="Profile" class="profile-image" />
 			<p class="profile-name">Westin Evans</p>
 			<p class="profile-contact">+1 234 567 890</p>
 			<p class="profile-email">westinevans@email.com</p>
+			<div class="delimiter"></div>
 		</div>
 		<nav class="menu">
 			<ul>
-				<li v-for="item in menuItems" :key="item.route">
+				<li v-for="item in menuItems" :key="item.route" :class="{
+							'activeItem': item.active,
+						}">
 					<router-link :to="item.route" class="menu-item">
 						<img :src="`/src/assets/${item.iconClass}.svg`" alt="icon" class="icon" />
 						<span>{{ item.name }}</span>
@@ -19,7 +25,10 @@
 		</nav>
 		<div class="settings">
 			<button @click="toggleDarkMode" class="toggle-button">
-				Dark Mode
+				<div class="toggle-button_title">
+					<img src="@/assets/dark_mode.svg" width="24" height="24" alt="dark_mode" class="dark_mode-icon" />
+					Dark Mode
+				</div>
 				<span class="toggle-switch"></span>
 			</button>
 		</div>
@@ -31,15 +40,15 @@ import { computed } from 'vue';
 
 const menuItems = computed(() => {
 	return [
-		{ name: 'Personal info', iconClass: 'person', route: 'personal-info' },
-		{ name: 'Location', iconClass: 'location', route: 'location' },
-		{ name: 'Education history', iconClass: 'school', route: 'education-history' },
-		{ name: 'Employment history', iconClass: 'calendar_today', route: 'employment-history' },
-		{ name: 'Professional license', iconClass: 'book', route: 'professional-license' },
-		{ name: 'Driver’s license', iconClass: 'shield_person', route: 'drivers-license' },
-		{ name: 'Medical tests', iconClass: 'quiz', route: 'medical-tests' },
-		{ name: 'Review', iconClass: 'reviews', route: 'review' },
-		{ name: 'Payment', iconClass: 'credit_card', route: 'payment' },
+		{ name: 'Personal info', iconClass: 'person', route: 'personal-info', active: true },
+		{ name: 'Location', iconClass: 'location', route: 'location', active: false },
+		{ name: 'Education history', iconClass: 'school', route: 'education-history', active: false },
+		{ name: 'Employment history', iconClass: 'calendar_today', route: 'employment-history', active: false },
+		{ name: 'Professional license', iconClass: 'book', route: 'professional-license', active: false },
+		{ name: 'Driver’s license', iconClass: 'shield_person', route: 'drivers-license', active: false },
+		{ name: 'Medical tests', iconClass: 'quiz', route: 'medical-tests', active: false },
+		{ name: 'Review', iconClass: 'reviews', route: 'review', active: false },
+		{ name: 'Payment', iconClass: 'credit_card', route: 'payment', active: false },
 	];
 })
 const toggleDarkMode = () => {
@@ -57,12 +66,37 @@ const toggleDarkMode = () => {
 	flex-direction: column;
 	justify-content: space-between;
 
+	.sidebar-title_container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	&-title {
 		text-align: center;
 	}
 
 	.profile-info {
 		text-align: center;
+
+		p {
+			margin-top: 0;
+			margin-bottom: 8px;
+
+			&:first-of-type {
+				margin-top: 25px;
+			}
+
+			&:last-of-type {
+				margin-bottom: 25px;
+			}
+		}
+
+		.delimiter {
+			width: 100%;
+			height: 1px;
+			background-color: #cccccc;
+		}
 	}
 
 	.profile-image {
@@ -92,6 +126,12 @@ const toggleDarkMode = () => {
 				}
 			}
 		}
+
+		.activeItem {
+			padding: 0.7rem 0.7rem 0.7rem 0.4rem;
+			border-radius: 5px;
+			background-color: rgba(221, 221, 221, 0.38);
+		}
 	}
 }
 
@@ -113,6 +153,15 @@ const toggleDarkMode = () => {
 		padding: 0.5rem;
 		width: 100%;
 		text-align: left;
+
+		.toggle-button_title {
+			display: flex;
+			align-items: center;
+
+			.dark_mode-icon {
+				margin-right: 5px;
+			}
+		}
 
 		.toggle-switch {
 			width: 35px;

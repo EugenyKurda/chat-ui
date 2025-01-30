@@ -64,7 +64,7 @@ const sendMessage = () => {
 		border: none;
 		cursor: pointer;
 		font-size: 1.5rem;
-		color: #007bff;
+		color: #1F766E;
 		margin-left: 0.5rem;
 	}
 }

@@ -2,6 +2,7 @@
 	<main class="chat">
 		<header class="chat-header">
 			<h2>Background check request</h2>
+			<h2 class="process-info">Progress 10%</h2>
 		</header>
 		<MessageList />
 		<MessageInput />
@@ -29,6 +30,11 @@ import MessageInput from "@/components/MessageInput.vue";
 
 		h2 {
 			margin: 0;
+			font-size: 1rem;
+		}
+
+		.process-info {
+			color: #1F766E;
 		}
 	}
 }
