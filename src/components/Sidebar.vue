@@ -18,17 +18,17 @@
 		</nav>
 		<div class="settings">
 			<button @click="toggleDarkMode" class="toggle-button">
-				<div class="toggle-button_title">
+				<p class="toggle-button_title">
 					<img src="@/assets/dark_mode.svg" width="24" height="24" alt="dark_mode" class="dark_mode-icon" />
 					Dark Mode
-				</div>
+				</p>
 				<span class="toggle-switch"></span>
 			</button>
 			<button class="exit-button">
-				<div class="exit-button_title">
+				<p class="exit-button_title">
 					<img src="@/assets/logout.svg" width="24" height="24" alt="logout" class="exit-icon" />
 					Exit
-				</div>
+				</p>
 			</button>
 		</div>
 	</aside>
@@ -57,7 +57,7 @@ const toggleDarkMode = () => {
 
 <style lang="scss" scoped>
 .sidebar {
-	width: 17%;
+	width: 20%;
 	background: #021A1A;
 	color: #fff;
 	padding: 1rem;
@@ -68,10 +68,11 @@ const toggleDarkMode = () => {
 	.sidebar-title_container {
 		display: flex;
 		align-items: center;
-		justify-content: flex-start;
+		width: 80%;
+		margin-left: 16px;
 
 		.sidebar-title {
-			margin-left: 10px;
+			margin-left: 15px;
 		}
 	}
 
@@ -93,6 +94,8 @@ const toggleDarkMode = () => {
 			cursor: pointer;
 			width: 80%;
 			color: #A2ACAC;
+			padding: 0.7rem 0.7rem 0.7rem 0.4rem;
+			border-radius: 5px;
 
 			.menu-item {
 				display: flex;
@@ -102,12 +105,14 @@ const toggleDarkMode = () => {
 					margin-right: 10px;
 				}
 			}
+
+			&:hover {
+				background-color: #263C3C;
+			}
 		}
 
 		.activeItem {
-			padding: 0.7rem 0.7rem 0.7rem 0.4rem;
-			border-radius: 5px;
-			background-color: rgba(221, 221, 221, 0.38);
+			background-color: #263C3C;
 		}
 	}
 }
@@ -134,6 +139,7 @@ const toggleDarkMode = () => {
 		.toggle-button_title {
 			display: flex;
 			align-items: center;
+			margin: 0;
 
 			.dark_mode-icon {
 				margin-right: 5px;
@@ -181,7 +187,9 @@ const toggleDarkMode = () => {
 		cursor: pointer;
 		padding: 0.5rem;
 		width: 100%;
+		height: 20px;
 		text-align: left;
+		margin: 0;
 
 		.exit-button_title {
 			display: flex;

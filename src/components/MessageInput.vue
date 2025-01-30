@@ -18,7 +18,7 @@ const sendMessage = () => {
 		chatStore.addMessage({
 			text: newMessage.value,
 			sentByUser: true,
-			timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })
+			timestamp: new Date().toISOString()
 		});
 		newMessage.value = '';
 	}

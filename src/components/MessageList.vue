@@ -1,8 +1,14 @@
 <template>
 	<section class="messages">
-		<div v-for="message in messages" :key="message.id" :class="['message', {'message-sent': message.sentByUser, 'message-received': !message.sentByUser}]">
-			<p>{{ message.text }}</p>
-			<span class="timestamp">{{ message.timestamp }}</span>
+		<div v-for="(message, index) in messages" :key="message.id" class="message-container">
+			<p v-if="shouldShowDate(message, index)" class="date-token">
+				{{ formatDate(message.timestamp) }}
+			</p>
+
+			<div :class="['message', { 'message-sent': message.sentByUser, 'message-received': !message.sentByUser }]">
+				<p>{{ message.text }}</p>
+				<span class="timestamp">{{ formatedDate(message.timestamp) }}</span>
+			</div>
 		</div>
 	</section>
 </template>
@@ -11,8 +17,39 @@
 import { computed } from 'vue';
 import { useChatStore } from '@/stores/chat.js';
 
+function formatedDate(timestamp) {
+	const date = new Date(timestamp);
+	return date.toLocaleTimeString('en-US', {
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: true,
+	});
+}
+
 const chatStore = useChatStore();
 const messages = computed(() => chatStore.messages);
+
+function shouldShowDate(message, index) {
+	const currentDate = new Date();
+	const messageDate = new Date(message.timestamp);
+
+	return index === 0 || !isSameDay(messageDate, new Date(messages.value[index - 1].timestamp));
+}
+
+function isSameDay(date1, date2) {
+	return date1.getDate() === date2.getDate() && date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
+}
+
+function formatDate(timestamp) {
+	const messageDate = new Date(timestamp);
+	const currentDate = new Date();
+
+	if (isSameDay(messageDate, currentDate)) {
+		return 'Today';
+	} else {
+		return messageDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+	}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -23,6 +60,13 @@ const messages = computed(() => chatStore.messages);
 	overflow-y: auto;
 	padding: 1rem;
 	flex-grow: 1;
+	position: relative;
+
+	.message-container {
+		display: flex;
+		flex-direction: column;
+	}
+
 }
 
 .message {
@@ -31,6 +75,7 @@ const messages = computed(() => chatStore.messages);
 	max-width: 40%;
 	padding: 17px;
 	border-radius: 15px;
+	margin: 0.5rem 0;
 
 	p {
 		font-size: 0.9rem;
@@ -44,22 +89,20 @@ const messages = computed(() => chatStore.messages);
 	&-sent {
 		align-self: flex-end;
 		background: #309399;
-		margin: 0.5rem;
 		border-bottom-right-radius: 0;
 
 		p {
-			color: #D5E8E9;
+			color: #d5e8e9;
 		}
 
 		.timestamp {
-			color: #E9F4F4;
+			color: #e9f4f4;
 		}
 	}
 
 	&-received {
 		align-self: flex-start;
-		background: #FFFFFF;
-		margin: 0.5rem;
+		background: #ffffff;
 		border-bottom-left-radius: 0;
 
 		p {
@@ -67,13 +110,25 @@ const messages = computed(() => chatStore.messages);
 		}
 
 		.timestamp {
-			color: #A7A7A7;
+			color: #a7a7a7;
 		}
 	}
 }
 
+.date-token {
+	padding: 5px;
+	background-color: #e1e5e9;
+	border-radius: 5px;
+	width: 60px;
+	color: #49494B;
+	font-size: 0.8rem;
+	margin-bottom: 1rem;
+	text-align: center;
+	align-self: center;
+}
+
 .timestamp {
 	font-size: 0.8rem;
-	color: #FFFFFF;
+	color: #ffffff;
 }
 </style>
